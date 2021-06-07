@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+
+    <title>Demo 7</title>
+    <style>
+        body{
+            padding: 50px;;
+        }
+        span{
+            font-size: 28px;
+            color:green;
+        }
+        .myinfo{
+            color:blueviolet;
+            background-color: yellow;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-3 offset-sm-3">
+            <form>
+                <h3 id="message">ABC</h3>
+                <div class="info">Info</div>
+                <span id="cat">I am a cat</span><br/>
+                <p id="pen">Add cat</p>
+                <label>First name</label>
+                <input id="fname"class="form-control" />
+                <div onclick="doSomething()">Change Cat</div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $("#fname").val("Momo");
+            $("#fname").on("input", function(){
+                $("#message").text("Value is:" + $(this).val());
+                $(".info").html("<h1>Hello<h1>");
+                if($(this).val().length<4){
+                    $("span").fadeOut();
+                    $("#pen").addClass("myinfo");
+                    $("body").css({"background-color":"pink"});
+                }else{
+                    $("span").fadeIn();
+                    $("#pen").removeClass("myinfo");
+                    $("body").css({"background-color":"grey"});
+                }
+            });
+            $('#pen').click(function(){
+                $(this).html("A cat is added");
+                $("form").append("<h1>Koko</h1>");
+                $("form").append("<img id='mycat' src='images/1.jpg'>");
+            });
+           
+        });
+
+
+        function doSomething(){
+                $("#pen").css({"color":"red"});
+                $("#mycat").attr("src", "images/2.jpg");
+             }
+    </script>
+
+</body>
+</html>
